@@ -5,10 +5,14 @@ const mongo_uri = process.env.MONGO_URI;
 
 const express = require("express");
 const articleRoutes = require("./routes/article");
+const cors = require("cors");
 const mongoose = require("mongoose");
 
 // express app
 const app = express();
+
+// allows cross origin resource sharing
+app.use(cors());
 
 // middleware
 app.use(express.json());
