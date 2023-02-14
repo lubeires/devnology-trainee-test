@@ -1,19 +1,49 @@
 import { Routes, Route } from "react-router-dom";
 
-import { Home, Create, Edit, DevGo, NotFound } from "./pages";
+import { Login, Register, Home, Create, Edit, DevGo, NotFound } from "./pages";
 
-import { Navbar } from "./components";
+import { Navbar, RequireAuth } from "./components";
 
 function App() {
   return (
     <>
       <Navbar />
-      <div className="container mt-5">
+      <div className="container mt-5 border rounded border-tertiary p-4">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/novo" element={<Create />} />
-          <Route path="/editar/:id" element={<Edit />} />
-          <Route path="/devgo" element={<DevGo />} />
+          <Route
+            path="/"
+            element={
+              <RequireAuth>
+                <Home />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/novo"
+            element={
+              <RequireAuth>
+                <Create />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/editar/:id"
+            element={
+              <RequireAuth>
+                <Edit />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/devgo"
+            element={
+              <RequireAuth>
+                <DevGo />
+              </RequireAuth>
+            }
+          />
+          <Route path="/entrar" element={<Login />} />
+          <Route path="/registrar" element={<Register />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

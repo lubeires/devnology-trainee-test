@@ -1,0 +1,69 @@
+import { useState } from "react";
+import { Message } from "../components";
+import { Link, useNavigate } from "react-router-dom";
+import { useRegister } from "../hooks/useRegister";
+
+export const Register = () => {
+  const [user, setUser] = useState({ email: "", password: "" });
+  const { register, error, isLoading } = useRegister();
+  const navigate = useNavigate();
+
+  return (
+    <>
+      {/* display error registering user - if any */}
+      {error && <Message message={error} isError={true} />}
+      <form
+        className="container w-75"
+        // register user
+        onSubmit={async (e) => {
+          e.preventDefault();
+          await register(user);
+          if (!error) navigate("/");
+        }}
+      >
+        <h4>Cadastrar-se</h4>
+        {/* email input */}
+        <div className="input-group mb-3 mt-4">
+          <span className="input-group-text" id="email">
+            Email
+          </span>
+          <input
+            type="email"
+            className="form-control"
+            aria-label="email do usuário"
+            aria-describedby="email"
+            value={user.email}
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
+          />
+        </div>
+        {/* password input */}
+        <div className="input-group mb-3">
+          <span className="input-group-text" id="password">
+            Senha
+          </span>
+          <input
+            type="password"
+            className="form-control"
+            aria-label="senha do usuário"
+            aria-describedby="password"
+            value={user.password}
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
+          />
+        </div>
+        {/* submit form */}
+        <div className="d-flex align-items-center gap-1 text-small">
+          <input
+            disabled={isLoading}
+            type="submit"
+            className="btn btn-outline-success me-3"
+            value="Cadastrar-se"
+          />
+          já possui conta?
+          <Link to="/entrar" className="link-success">
+            entrar
+          </Link>
+        </div>
+      </form>
+    </>
+  );
+};

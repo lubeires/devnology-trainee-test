@@ -1,7 +1,7 @@
 import { Article } from "./Article";
-import { Form } from "./Form";
+import { ArticleForm } from "./ArticleForm";
 import { Navbar } from "./Navbar";
-import { Error } from "./Error";
 import { Message } from "./Message";
+import { RequireAuth } from "./RequireAuth";
 
-export { Article, Form, Navbar, Error, Message };
+export { Article, ArticleForm, Navbar, Message, RequireAuth };

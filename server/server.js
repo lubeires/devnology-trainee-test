@@ -5,6 +5,7 @@ const mongo_uri = process.env.MONGO_URI;
 
 const express = require("express");
 const articleRoutes = require("./routes/article");
+const userRoutes = require("./routes/user");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
@@ -23,6 +24,7 @@ app.use((req, res, next) => {
 
 // routes
 app.use("/api/articles", articleRoutes);
+app.use("/api/user", userRoutes);
 
 mongoose.set("strictQuery", false);
 

@@ -7,7 +7,11 @@ const {
   updateArticle,
 } = require("../controllers/article");
 
+const requireAuth = require("../middleware/requireAuth");
+
 const router = express.Router();
+// protect routes
+router.use(requireAuth);
 
 // GET all articles
 router.get("/", getArticles);

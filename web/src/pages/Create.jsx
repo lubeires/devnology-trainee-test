@@ -1,9 +1,6 @@
-import { Form } from "../components";
+import { ArticleForm } from "../components";
 
 export const Create = () => {
-  return (
-    <div>
-      <Form />
-    </div>
-  );
+  // render form for creating article
+  return <ArticleForm />;
 };

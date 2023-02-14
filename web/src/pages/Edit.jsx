@@ -1,31 +1,42 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { Form, Error } from "../components";
+import { ArticleForm, Message } from "../components";
+import { useAuth } from "../hooks/useAuth";
 
 export const Edit = () => {
   const [article, setArticle] = useState(null);
   const [error, setError] = useState(null);
+  const { user } = useAuth();
 
   const { id } = useParams();
 
   useEffect(() => {
+    // GET article request
     const fetchArticle = async () => {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/api/articles/${id}`
+        `${process.env.REACT_APP_BASE_URL}/api/articles/${id}`,
+        {
+          headers: {
+            // send authorization token
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
       );
       const data = await response.json();
       if (response.ok) setArticle(data);
       else setError(data.error);
     };
 
-    fetchArticle();
-  }, [id]);
+    if (user) fetchArticle();
+  }, [id, user]);
 
   return (
     <>
-      {article && <Form previousArticle={article} />}
-      {error && <Error error={error} />}
+      {/* render form for updating article */}
+      {article && <ArticleForm previousArticle={article} />}
+      {/* display error finding article - if any */}
+      {error && <Message message={error} isError={true} />}
     </>
   );
 };

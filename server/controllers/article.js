@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 
 // get all articles
 const getArticles = async (req, res) => {
-  const articles = await Article.find({}).sort({ updatedAt: -1 });
+  const userId = req.user._id;
+  const articles = await Article.find({ userId }).sort({ updatedAt: -1 });
   res.status(200).json(articles);
 };
 
@@ -28,13 +29,12 @@ const createArticle = async (req, res) => {
   console.log(req.body);
 
   if (!label || !url)
-    return res
-      .status(400)
-      .json({ error: "Por favor, preencha todos os campos." });
+    return res.status(400).json({ error: "Preencha todos os campos." });
 
   // add article to db
   try {
-    const article = await Article.create({ label, url });
+    const userId = req.user._id;
+    const article = await Article.create({ label, url, userId });
     res.status(200).json({ article, message: "Novo artigo salvo!" });
   } catch (err) {
     res.status(400).json({ error: err.message });
