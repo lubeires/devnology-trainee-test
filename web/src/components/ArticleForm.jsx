@@ -14,7 +14,7 @@ export const ArticleForm = ({ previousArticle = null }) => {
   const navigate = useNavigate();
 
   // PATCH article request
-  const createArticle = (article) =>
+  const createArticle = () =>
     fetch(`${URI}/api/articles`, {
       method: "POST",
       headers: {
