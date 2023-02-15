@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
 import { ArticleForm, Message } from "../components";
 import { useAuth } from "../hooks/useAuth";
+import { URI } from "../conf";
 
 export const Edit = () => {
   const [article, setArticle] = useState(null);
@@ -14,7 +14,7 @@ export const Edit = () => {
   useEffect(() => {
     // GET article request
     const fetchArticle = async () => {
-      const response = await fetch(`/api/articles/${id}`, {
+      const response = await fetch(`${URI}/api/articles/${id}`, {
         headers: {
           // send authorization token
           Authorization: `Bearer ${user.token}`,

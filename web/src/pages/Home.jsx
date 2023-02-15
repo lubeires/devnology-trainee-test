@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Article, Message } from "../components";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { URI } from "../conf";
 
 export const Home = () => {
   const [articles, setArticles] = useState(null);
@@ -12,7 +13,7 @@ export const Home = () => {
   useEffect(() => {
     // GET all articles request
     const fetchArticles = async () => {
-      const response = await fetch("/api/articles", {
+      const response = await fetch(`${URI}/api/articles`, {
         headers: {
           // send authorization token
           Authorization: `Bearer ${user.token}`,
