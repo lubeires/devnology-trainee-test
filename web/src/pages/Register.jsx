@@ -13,7 +13,6 @@ export const Register = () => {
       {/* display error registering user - if any */}
       {error && <Message message={error} isError={true} />}
       <form
-        className="container w-75"
         // register user
         onSubmit={async (e) => {
           e.preventDefault();

@@ -1,3 +1,5 @@
+import logo from "../logo.png";
+
 import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useAuth } from "../hooks/useAuth";
@@ -8,10 +10,11 @@ export const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-dark-subtle border-bottom border-dark-subtle">
+      <nav className="navbar navbar-expand-lg bg-dark-subtle border-bottom border-dark-subtle px-5">
         <div className="container-fluid">
           {/* link to home page */}
-          <Link className="navbar-brand text-success" to="/">
+          <Link className="navbar-brand link-success" to="/">
+            <img src={logo} alt="logo" height={36} className="me-2" />
             myTechArticles
           </Link>
           <button

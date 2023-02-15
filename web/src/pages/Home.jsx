@@ -27,7 +27,7 @@ export const Home = () => {
     };
 
     if (user) fetchArticles();
-  }, []);
+  }, [user]);
 
   return (
     <>

@@ -13,7 +13,6 @@ export const Login = () => {
       {/* display error logging in user - if any */}
       {error && <Message message={error} isError={true} />}
       <form
-        className="container w-75"
         // log in user
         onSubmit={async (e) => {
           e.preventDefault();
