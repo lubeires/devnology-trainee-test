@@ -12,15 +12,12 @@ export const Home = () => {
   useEffect(() => {
     // GET all articles request
     const fetchArticles = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/api/articles`,
-        {
-          headers: {
-            // send authorization token
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
+      const response = await fetch("/api/articles", {
+        headers: {
+          // send authorization token
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       const data = await response.json();
 
       if (response.ok) setArticles(data);

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { Message } from "./Message";
+import { URI } from "../conf";
 
 export const ArticleForm = ({ previousArticle = null }) => {
   // create article state and set article if is editing existing article
@@ -14,7 +15,7 @@ export const ArticleForm = ({ previousArticle = null }) => {
 
   // PATCH article request
   const createArticle = (article) =>
-    fetch(`${process.env.REACT_APP_BASE_URL}/api/articles`, {
+    fetch(`${URI}/api/articles`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +27,7 @@ export const ArticleForm = ({ previousArticle = null }) => {
 
   // POST article request
   const updateArticle = () =>
-    fetch(`${process.env.REACT_APP_BASE_URL}/api/articles/${article._id}`, {
+    fetch(`${URI}/api/articles/${article._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

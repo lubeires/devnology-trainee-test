@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "./useAuth";
+import { URI } from "../conf";
 
 export const useLogin = () => {
   const [error, setError] = useState();
@@ -12,7 +13,7 @@ export const useLogin = () => {
 
     const response = await fetch(
       // login user request
-      `${process.env.REACT_APP_BASE_URL}/api/user/login`,
+      `${URI}/api/user/login`,
       {
         method: "POST",
         headers: {

@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { URI } from "../conf";
 
 export const Article = ({ article, isSaved }) => {
   const { user } = useAuth();
@@ -7,18 +8,15 @@ export const Article = ({ article, isSaved }) => {
 
   // PATCH devGo article request
   const saveDevGoArticle = async () => {
-    const response = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/api/articles`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // send authorization token
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({ ...article }),
-      }
-    );
+    const response = await fetch(`${URI}/api/articles`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // send authorization token
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: JSON.stringify({ ...article }),
+    });
 
     const data = await response.json();
 
@@ -33,16 +31,13 @@ export const Article = ({ article, isSaved }) => {
     // check if user is logged in
     if (!user) return;
 
-    const response = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/api/articles/${article._id}`,
-      {
-        method: "DELETE",
-        headers: {
-          // send authorization token
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
+    const response = await fetch(`${URI}/api/articles/${article._id}`, {
+      method: "DELETE",
+      headers: {
+        // send authorization token
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
 
     const data = await response.json();
 

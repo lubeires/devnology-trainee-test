@@ -14,15 +14,12 @@ export const Edit = () => {
   useEffect(() => {
     // GET article request
     const fetchArticle = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/api/articles/${id}`,
-        {
-          headers: {
-            // send authorization token
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
+      const response = await fetch(`/api/articles/${id}`, {
+        headers: {
+          // send authorization token
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       const data = await response.json();
       if (response.ok) setArticle(data);
       else setError(data.error);

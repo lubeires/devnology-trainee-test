@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "./useAuth";
+import { URI } from "../conf";
 
 export const useRegister = () => {
   const [error, setError] = useState();
@@ -12,7 +13,7 @@ export const useRegister = () => {
 
     const response = await fetch(
       // register user request
-      `${process.env.REACT_APP_BASE_URL}/api/user/register`,
+      `${URI}/api/user/register`,
       {
         method: "POST",
         headers: {

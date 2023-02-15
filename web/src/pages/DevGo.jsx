@@ -13,15 +13,12 @@ export const DevGo = () => {
     setError(null);
     // GET all devGo articles request
     const fetchArticles = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/api/devgo`,
-        {
-          headers: {
-            // send authorization token
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
+      const response = await fetch(`/api/devgo`, {
+        headers: {
+          // send authorization token
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       const data = await response.json();
 
       if (response.ok) {
