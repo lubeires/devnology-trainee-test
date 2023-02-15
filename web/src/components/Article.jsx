@@ -5,6 +5,29 @@ export const Article = ({ article, isSaved }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  // PATCH devGo article request
+  const saveDevGoArticle = async () => {
+    const response = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/api/articles`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // send authorization token
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({ ...article }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // goes to home page and send success create/update message
+      navigate("/", { state: { message: data.message } });
+    }
+  };
+
   // DELETE article request
   const deleteArticle = async () => {
     // check if user is logged in
@@ -60,7 +83,13 @@ export const Article = ({ article, isSaved }) => {
               ></i>
             </div>
           ) : (
-            <button className="btn btn-outline-success">salvar</button>
+            // button to save devGo article
+            <button
+              className="btn btn-outline-success"
+              onClick={saveDevGoArticle}
+            >
+              salvar
+            </button>
           )}
         </div>
       </div>

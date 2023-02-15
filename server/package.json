@@ -19,6 +19,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.0.1",
     "mongoose": "^6.9.1",
+    "puppeteer": "^19.7.0",
     "validator": "^13.9.0"
   }
 }

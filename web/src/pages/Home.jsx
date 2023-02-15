@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Article, Message } from "../components";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
@@ -8,7 +8,6 @@ export const Home = () => {
   const [articles, setArticles] = useState(null);
   const { user } = useAuth();
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     // GET all articles request
@@ -22,13 +21,13 @@ export const Home = () => {
           },
         }
       );
-      const json = await response.json();
+      const data = await response.json();
 
-      if (response.ok) setArticles(json);
+      if (response.ok) setArticles(data);
     };
 
     if (user) fetchArticles();
-  }, [user, navigate]);
+  }, []);
 
   return (
     <>

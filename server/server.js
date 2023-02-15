@@ -4,10 +4,12 @@ const port = process.env.PORT;
 const mongo_uri = process.env.MONGO_URI;
 
 const express = require("express");
-const articleRoutes = require("./routes/article");
-const userRoutes = require("./routes/user");
 const cors = require("cors");
 const mongoose = require("mongoose");
+
+const articleRoutes = require("./routes/article");
+const userRoutes = require("./routes/user");
+const devGoRoute = require("./routes/devgo");
 
 // express app
 const app = express();
@@ -25,6 +27,7 @@ app.use((req, res, next) => {
 // routes
 app.use("/api/articles", articleRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/devgo", devGoRoute);
 
 mongoose.set("strictQuery", false);
 

@@ -13,7 +13,7 @@ export const ArticleForm = ({ previousArticle = null }) => {
   const navigate = useNavigate();
 
   // PATCH article request
-  const createArticle = () =>
+  const createArticle = (article) =>
     fetch(`${process.env.REACT_APP_BASE_URL}/api/articles`, {
       method: "POST",
       headers: {
