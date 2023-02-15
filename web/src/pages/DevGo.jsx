@@ -12,6 +12,7 @@ export const DevGo = () => {
   useEffect(() => {
     setIsLoading(true);
     setError(null);
+
     // GET all devGo articles request
     const fetchArticles = async () => {
       const response = await fetch(`${URI}/api/devgo`, {
@@ -23,12 +24,23 @@ export const DevGo = () => {
       const data = await response.json();
 
       if (response.ok) {
+        // save devGo articles in local storage
+        localStorage.setItem("devGoArticles", JSON.stringify(data));
         setArticles(data);
+        console.log(data);
       } else setError(data.error);
       setIsLoading(false);
     };
 
-    if (user) fetchArticles();
+    if (user) {
+      // try to get devGo articles from local storage
+      const devGoArticles = JSON.parse(localStorage.getItem("devGoArticles"));
+
+      if (devGoArticles) {
+        setArticles(devGoArticles);
+        setIsLoading(false);
+      } else fetchArticles();
+    }
   }, [user]);
 
   return (
