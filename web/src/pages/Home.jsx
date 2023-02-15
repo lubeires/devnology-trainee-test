@@ -8,9 +8,11 @@ import { URI } from "../conf";
 export const Home = () => {
   const [articles, setArticles] = useState(null);
   const { user } = useAuth();
+  const [isLoading, setIsLoading] = useState();
   const location = useLocation();
 
   useEffect(() => {
+    setIsLoading(true);
     // GET all articles request
     const fetchArticles = async () => {
       const response = await fetch(`${URI}/api/articles`, {
@@ -22,6 +24,7 @@ export const Home = () => {
       const data = await response.json();
 
       if (response.ok) setArticles(data);
+      setIsLoading(false);
     };
 
     if (user) fetchArticles();
@@ -41,7 +44,10 @@ export const Home = () => {
           </Link>
         </div>
       </div>
-      {articles &&
+
+      {isLoading && <Message message={"Carregando artigos salvos..."} />}
+      {!isLoading &&
+        articles &&
         // iterate through articles and render the article component for each of them
         articles.map((article) => (
           <Article key={article._id} article={article} isSaved={true} />
