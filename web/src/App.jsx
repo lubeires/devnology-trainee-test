@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { Login, Register, Home, Create, Edit, DevGo, NotFound } from "./pages";
 
 import { Navbar, RequireAuth } from "./components";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
+      <Footer />
     </>
   );
 }
