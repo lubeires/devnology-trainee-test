@@ -26,8 +26,6 @@ const getArticle = async (req, res) => {
 const createArticle = async (req, res) => {
   const { label, url } = req.body;
 
-  console.log(req.body);
-
   if (!label || !url)
     return res.status(400).json({ error: "Preencha todos os campos." });
 
