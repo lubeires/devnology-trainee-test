@@ -55,8 +55,6 @@ Finalmente, tanto o `server`, quanto o `client` foram hospedados no [Render](htt
 
 ### Rodando o backend
 
-Primeiramente, é necessário criar uma  um banco de dados no Atlas MongoDB e
-
 ```bash
 # clonar esse repositório
 $ git clone <https://github.com/plhrsl/devnology-trainee-test>
