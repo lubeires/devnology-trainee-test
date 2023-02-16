@@ -22,10 +22,10 @@ router.get("/:id", getArticle);
 // POST new article
 router.post("/", createArticle);
 
-// DELETE a article
+// DELETE an article
 router.delete("/:id", deleteArticle);
 
-// UPDATE a article
+// UPDATE an article
 router.patch("/:id", updateArticle);
 
 module.exports = router;
