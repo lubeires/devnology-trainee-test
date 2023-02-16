@@ -1,6 +1,6 @@
 // environmet variables
 require("dotenv").config();
-const port = process.env.PORT;
+const port = process.env.PORT ? process.env.PORT : 5000;
 const mongo_uri = process.env.MONGO_URI;
 
 const express = require("express");

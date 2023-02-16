@@ -55,13 +55,18 @@ Finalmente, tanto o `server`, quanto o `client` foram hospedados no [Render](htt
 
 ### Rodando o backend
 
+Primeiramente, é necessário criar uma  um banco de dados no Atlas MongoDB e
+
 ```bash
 # clonar esse repositório
 $ git clone <https://github.com/plhrsl/devnology-trainee-test>
 
 # entrar no diretório do servidor
 $ cd server
+```
+No diretório do servidor, crie um arquivo `.env` com as variáveis indicadas em `.env.example`. Primeiramente, crie um cluster com o [MongoDB Atlas](https://www.mongodb.com/docs/atlas/tutorial/deploy-free-tier-cluster/) e atribua a URI de conexão a `MONGO_URI`. Além disso, atribua uma senha forte a `JWT_SECRET`.
 
+```bash
 # instalar as dependências do servidor
 $ npm install
 
